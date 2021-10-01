@@ -1,7 +1,16 @@
 import {Component} from "react";
 import {PatientApiService} from "../../services/PatientApiService";
 import paciente from '../../resources/paciente.png'
-import {calendarClearOutline, navigate, map, body, trash, eye, add} from "ionicons/icons";
+import {
+    calendarClearOutline,
+    navigate,
+    map,
+    body,
+    trash,
+    eye,
+    add,
+    reader
+} from "ionicons/icons";
 import '../Page.css'
 import {
     IonApp,
@@ -11,7 +20,7 @@ import {
     IonToolbar,
     IonButton,
     IonList,
-    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton
+    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonButtons, IonMenuButton, IonSearchbar, IonSegment, IonSegmentButton
 } from '@ionic/react';
 
 import '@ionic/react/css/core.css';
@@ -34,11 +43,14 @@ class Patients extends Component<any, any> {
         })
     }
     render() {
+        // @ts-ignore
+        // @ts-ignore
+        // @ts-ignore
         return (
             <IonApp>
                 <IonHeader>
                     <IonToolbar color="primary">
-                        <IonTitle>Pacientes</IonTitle>
+                        <IonTitle>App Medica</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
@@ -84,6 +96,15 @@ class Patients extends Component<any, any> {
                                                         href={"pacientes/" + item.id}
                                                     >
                                                         <IonIcon slot="icon-only" src={eye}/></IonButton>
+                                                </IonCol>
+                                                <IonCol>
+                                                    <IonButton
+                                                        color="tertiary"
+                                                        expand="block"
+                                                        shape="round"
+                                                        href={"pacientes/" + item.id}
+                                                    >
+                                                        <IonIcon slot="icon-only" src={reader}/></IonButton>
                                                 </IonCol>
 
                                             </IonRow>
