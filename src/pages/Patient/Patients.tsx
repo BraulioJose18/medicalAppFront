@@ -9,7 +9,7 @@ import {
     trash,
     eye,
     add,
-    reader
+    pencil
 } from "ionicons/icons";
 import '../Page.css'
 import {
@@ -20,32 +20,40 @@ import {
     IonToolbar,
     IonButton,
     IonList,
-    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton, IonButtons, IonMenuButton, IonSearchbar, IonSegment, IonSegmentButton
+    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton
 } from '@ionic/react';
 
 import '@ionic/react/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
-import logo from "../../resources/epis.png";
+import {Patient} from "../../models/Patient";
 
-class Patients extends Component<any, any> {
-    state = {
-        items: []
+interface IPatientsState {
+    patients: Patient[]
+}
+
+class Patients extends Component<any, IPatientsState> {
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            patients: []
+        }
     }
-    deletePatient(id: any){
-        PatientApiService.instance().delete(id).then(()=>{
+
+    deletePatient(id: any) {
+        PatientApiService.instance().delete(id).then(() => {
             this.componentDidMount()
         })
     }
+
     componentDidMount() {
-        PatientApiService.instance().list().then((response) =>{
-            console.log(response)
-            this.setState({items: response})
+        PatientApiService.instance().list().then((response) => {
+            if (response)
+                this.setState({patients: response})
         })
     }
+
     render() {
-        // @ts-ignore
-        // @ts-ignore
-        // @ts-ignore
         return (
             <IonApp>
                 <IonHeader>
@@ -57,26 +65,25 @@ class Patients extends Component<any, any> {
                     <IonFab vertical="bottom" horizontal="end" slot="fixed">
                         <IonFabButton
                             href={"pacientes/crear"}>
-                            <IonIcon
-                                icon={add}
-                            />
+                            <IonIcon icon={add}/>
                         </IonFabButton>
                     </IonFab>
                     <div className="itemLista">
                         <IonList mode="ios" lines="full">
-                            {this.state.items.map((item: any) => (
+                            {this.state.patients.map((item: any) => (
                                 <IonItem key={item.id}>
                                     <div className="contenedor">
                                         <IonAvatar>
-                                            <img src={paciente}/>
+                                            <img src={paciente} alt=""/>
                                         </IonAvatar>
                                     </div>
                                     <IonLabel>
                                         <h1>{item.full_name}</h1>
-                                        <h2> <IonIcon src={calendarClearOutline}/>  {item.birth_date}</h2>
-                                        <h2> <IonIcon src={body}/> {item.height}</h2>
-                                        <h2> <IonIcon src={navigate}/> {item.address}</h2>
-                                        <h2> <IonIcon src={map}/> {item.location_latitude}, {item.location_longitude}</h2>
+                                        <h2><IonIcon src={calendarClearOutline}/> {item.birth_date}</h2>
+                                        <h2><IonIcon src={body}/> {item.height}</h2>
+                                        <h2><IonIcon src={navigate}/> {item.address}</h2>
+                                        <h2><IonIcon src={map}/> {item.location_latitude}, {item.location_longitude}
+                                        </h2>
                                         <IonGrid>
                                             <IonRow>
                                                 <IonCol>
@@ -102,9 +109,9 @@ class Patients extends Component<any, any> {
                                                         color="tertiary"
                                                         expand="block"
                                                         shape="round"
-                                                        href={"pacientes/" + item.id}
+                                                        href={"pacientes/editar/" + item.id}
                                                     >
-                                                        <IonIcon slot="icon-only" src={reader}/></IonButton>
+                                                        <IonIcon slot="icon-only" src={pencil}/></IonButton>
                                                 </IonCol>
 
                                             </IonRow>
@@ -119,4 +126,6 @@ class Patients extends Component<any, any> {
         );
     }
 
-} export default Patients;
+}
+
+export default Patients;

@@ -1,7 +1,6 @@
 import {IonApp, IonRouterOutlet, IonSplitPane} from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import {Redirect, Route} from 'react-router-dom';
-import Toolbar from './components/Toolbar';
 import Page from './pages/Page';
 
 /* Core CSS required for Ionic components to work properly */
@@ -25,6 +24,7 @@ import './theme/variables.css';
 import Patients from "./pages/Patient/Patients";
 import DetailPatient from "./pages/Patient/DetailPatient";
 import CreatePatient from "./pages/Patient/CreatePatient";
+import EditPatient from "./pages/Patient/EditPatient";
 
 const App: React.FC = () => {
     return (
@@ -36,6 +36,9 @@ const App: React.FC = () => {
                         <DetailPatient id={Number(props.match.params.id)}/>
                     )}/>
                     <Route path="/pacientes/crear" component={CreatePatient}/>
+                    <Route exact path="/pacientes/editar/:id" render={(props) => (
+                        <EditPatient id={Number(props.match.params.id)}/>
+                    )}/>
                     <Redirect exact from="/" to="/pacientes"/>
                 </IonRouterOutlet>
             </IonReactRouter>
