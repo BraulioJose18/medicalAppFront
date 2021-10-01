@@ -1,7 +1,7 @@
 import {Component} from "react";
-import paciente from '../resources/paciente.png'
+import paciente from '../../resources/paciente.png'
 import {save, person, calendar, accessibility,map, navigate} from "ionicons/icons";
-import {PatientApiService} from "../services/PatientApiService";
+import {PatientApiService} from "../../services/PatientApiService";
 import {
     IonApp,
     IonContent,
@@ -16,7 +16,7 @@ import {
 
 import '@ionic/react/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
-import {Patient} from "../models/Patient";
+import {Patient} from "../../models/Patient";
 interface iPatientState {
     patient: Patient
 }

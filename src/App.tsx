@@ -22,9 +22,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Patients from "./pages/Patients";
-import DetailPatient from "./pages/DetailPatient";
-import CreatePatient from "./pages/CreatePatient";
+import Patients from "./pages/Patient/Patients";
+import DetailPatient from "./pages/Patient/DetailPatient";
+import CreatePatient from "./pages/Patient/CreatePatient";
 
 const App: React.FC = () => {
     return (

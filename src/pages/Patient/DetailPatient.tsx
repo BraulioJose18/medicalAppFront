@@ -1,7 +1,7 @@
 import {Component} from "react";
-import logo from '../resources/epis.png'
+import logo from '../../resources/epis.png'
 import {body, calendarClearOutline, clipboard, map, navigate, trash} from "ionicons/icons";
-import {PatientApiService} from "../services/PatientApiService";
+import {PatientApiService} from "../../services/PatientApiService";
 import {
     IonApp,
     IonContent,

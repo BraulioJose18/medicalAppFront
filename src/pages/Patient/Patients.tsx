@@ -1,8 +1,8 @@
 import {Component} from "react";
-import {PatientApiService} from "../services/PatientApiService";
-import paciente from '../resources/paciente.png'
+import {PatientApiService} from "../../services/PatientApiService";
+import paciente from '../../resources/paciente.png'
 import {calendarClearOutline, navigate, map, body, trash, eye, add} from "ionicons/icons";
-import './Page.css'
+import '../Page.css'
 import {
     IonApp,
     IonContent,
@@ -16,7 +16,7 @@ import {
 
 import '@ionic/react/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
-import logo from "../resources/epis.png";
+import logo from "../../resources/epis.png";
 
 class Patients extends Component<any, any> {
     state = {
