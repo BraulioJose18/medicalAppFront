@@ -1,6 +1,7 @@
 import {MedicalHistory} from "../models/MedicalHistory";
-import {API_MEDICAL_HISTORY} from "./ApiCredentials";
+import {API_MEDICAL_HISTORY, API_URL} from "./ApiCredentials";
 import {CrudApiService} from "./CrudApiService";
+import axios from "axios";
 
 export class MedicalHistoryApiService extends CrudApiService<number, MedicalHistory> {
 
@@ -17,4 +18,11 @@ export class MedicalHistoryApiService extends CrudApiService<number, MedicalHist
         super(API_MEDICAL_HISTORY);
     }
 
+    findByIdPatient(id: number): Promise<MedicalHistory[] | void> {
+        return axios.get(API_MEDICAL_HISTORY + '?patient__id=' + id).then((response: any) => {
+            return response.data as MedicalHistory[]
+        }, (reason: any) => {
+            console.log(reason)
+        });
+    }
 }
