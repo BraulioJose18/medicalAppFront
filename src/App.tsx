@@ -24,6 +24,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Patients from "./pages/Patients";
 import DetailPatient from "./pages/DetailPatient";
+import CreatePatient from "./pages/CreatePatient";
 
 const App: React.FC = () => {
     return (
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                     <Route exact path="/pacientes/:id" render={(props) => (
                         <DetailPatient id={Number(props.match.params.id)}/>
                     )}/>
+                    <Route path="/pacientes/crear" component={CreatePatient}/>
                     <Redirect exact from="/" to="/pacientes"/>
                 </IonRouterOutlet>
             </IonReactRouter>

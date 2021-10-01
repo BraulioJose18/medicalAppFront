@@ -1,5 +1,6 @@
 import {Component} from "react";
-import {Patient} from "../models/Patient";
+import logo from '../resources/epis.png'
+import {body, calendarClearOutline, clipboard, map, navigate, trash} from "ionicons/icons";
 import {PatientApiService} from "../services/PatientApiService";
 import {
     IonApp,
@@ -12,7 +13,7 @@ import {
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
-    IonButton
+    IonButton, IonItem, IonIcon,
 } from '@ionic/react';
 
 import '@ionic/react/css/core.css';
@@ -41,36 +42,43 @@ class DetailPatient extends Component<PatientsProps> {
         super(props)
     }
     componentDidMount() {
-        console.log("Wiii")
         PatientApiService.instance().read(this.props.id).then((response) =>{
             console.log(response)
             this.setState({patient: response})
         })
     }
+
     render() {
         return (
             <IonApp>
-                <IonButton href={"/pacientes"}> List of Students</IonButton>
                 <IonHeader>
                     <IonToolbar color="primary">
-                        <IonTitle>EPIS DETAIL ENROLLMENT</IonTitle>
+                        <IonTitle>Detalle</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
+                        <IonButton
+                            href={"/pacientes"}
+                            color="secondary"
+                            expand="block"
+                            className="boton"
+                            fill="outline"
+                        >
+                            <IonIcon slot="start" src={clipboard}/>Listado de Pacientes</IonButton>
                     <IonCard>
-                        <IonCardHeader>
-                            <IonCardTitle>
-                                {this.state.patient.full_name}
-                            </IonCardTitle>
-                            <IonCardSubtitle>
-                                {this.state.patient.birth_date}
-                            </IonCardSubtitle>
-
-                        </IonCardHeader>
-                        <IonCardContent>
-                            <p>CUI: {this.state.patient.height}</p>
-                            <p>DNI: {this.state.patient.address}</p>
-                        </IonCardContent>
+                        <img src={logo}/>
+                            <IonCardHeader>
+                                <IonCardTitle>{this.state.patient.full_name}</IonCardTitle>
+                                <IonCardSubtitle>
+                                    <IonIcon src={calendarClearOutline}/> {this.state.patient.birth_date}
+                                </IonCardSubtitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <h2>Datos Personaless</h2>
+                                <h3> <IonIcon src={body}/> {this.state.patient.height}</h3>
+                                <h3> <IonIcon src={navigate}/> {this.state.patient.address}</h3>
+                                <h3> <IonIcon src={map}/> {this.state.patient.location_latitude} , {this.state.patient.location_longitude}</h3>
+                            </IonCardContent>
                     </IonCard>
                 </IonContent>
             </IonApp>

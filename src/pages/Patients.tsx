@@ -1,25 +1,31 @@
 import {Component} from "react";
 import {PatientApiService} from "../services/PatientApiService";
+import paciente from '../resources/paciente.png'
+import {calendarClearOutline, navigate, map, body, trash, eye, add} from "ionicons/icons";
+import './Page.css'
 import {
     IonApp,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonButton
+    IonButton,
+    IonList,
+    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton
 } from '@ionic/react';
 
 import '@ionic/react/css/core.css';
 import '@ionic/core/css/ionic.bundle.css';
+import logo from "../resources/epis.png";
 
 class Patients extends Component<any, any> {
     state = {
         items: []
+    }
+    deletePatient(id: any){
+        PatientApiService.instance().delete(id).then(()=>{
+            this.componentDidMount()
+        })
     }
     componentDidMount() {
         PatientApiService.instance().list().then((response) =>{
@@ -36,27 +42,57 @@ class Patients extends Component<any, any> {
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>
-                    {this.state.items.map((item: any) => (
-                        <IonCard key={item.id}>
-                            <h1> {item.full_name} </h1>
-                            <h1> {item.birth_date}</h1>
-                            <IonCardHeader>
-                                <IonCardTitle>
-                                    {item.height}
-                                </IonCardTitle>
-                                <IonCardSubtitle>
-                                    {item.address}
-                                </IonCardSubtitle>
+                    <IonFab vertical="bottom" horizontal="end" slot="fixed">
+                        <IonFabButton
+                            href={"pacientes/crear"}>
+                            <IonIcon
+                                icon={add}
+                            />
+                        </IonFabButton>
+                    </IonFab>
+                    <div className="itemLista">
+                        <IonList mode="ios" lines="full">
+                            {this.state.items.map((item: any) => (
+                                <IonItem key={item.id}>
+                                    <div className="contenedor">
+                                        <IonAvatar>
+                                            <img src={paciente}/>
+                                        </IonAvatar>
+                                    </div>
+                                    <IonLabel>
+                                        <h1>{item.full_name}</h1>
+                                        <h2> <IonIcon src={calendarClearOutline}/>  {item.birth_date}</h2>
+                                        <h2> <IonIcon src={body}/> {item.height}</h2>
+                                        <h2> <IonIcon src={navigate}/> {item.address}</h2>
+                                        <h2> <IonIcon src={map}/> {item.location_latitude}, {item.location_longitude}</h2>
+                                        <IonGrid>
+                                            <IonRow>
+                                                <IonCol>
+                                                    <IonButton
+                                                        color="danger"
+                                                        shape="round"
+                                                        expand="block"
+                                                        onClick={() => this.deletePatient(item.id)}
+                                                    >
+                                                        <IonIcon slot="icon-only" src={trash}/></IonButton>
+                                                </IonCol>
+                                                <IonCol>
+                                                    <IonButton
+                                                        color="success"
+                                                        expand="block"
+                                                        shape="round"
+                                                        href={"pacientes/" + item.id}
+                                                    >
+                                                        <IonIcon slot="icon-only" src={eye}/></IonButton>
+                                                </IonCol>
 
-                            </IonCardHeader>
-                            <IonCardContent>
-                                <p>CUI: {item.location_latitude}</p>
-                                <p>DNI: {item.location_longitude}</p>
-                                <IonButton href={"pacientes/" + item.id}> Detail</IonButton>
-                            </IonCardContent>
-                        </IonCard>
-
-                    ))}
+                                            </IonRow>
+                                        </IonGrid>
+                                    </IonLabel>
+                                </IonItem>
+                            ))}
+                        </IonList>
+                    </div>
                 </IonContent>
             </IonApp>
         );
