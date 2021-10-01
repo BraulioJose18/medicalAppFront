@@ -72,10 +72,10 @@ class DetailPatient extends Component<PatientsProps, IPatientState> {
                         </IonCardHeader>
                         <IonCardContent>
                             <h2>Datos Personaless</h2>
-                            <h3><IonIcon src={body}/> {this.state.patient.height}</h3>
-                            <h3><IonIcon src={navigate}/> {this.state.patient.address}</h3>
+                            <h3><IonIcon src={body}/> <b> Altura: </b>{this.state.patient.height}</h3>
+                            <h3><IonIcon src={navigate}/> <b> Dirección: </b> {this.state.patient.address}</h3>
                             <h3><IonIcon
-                                src={map}/> {this.state.patient.location_latitude} , {this.state.patient.location_longitude}
+                                src={map}/> <b> Coordenadas: </b> {this.state.patient.location_latitude} , {this.state.patient.location_longitude}
                             </h3>
                         </IonCardContent>
                     </IonCard>

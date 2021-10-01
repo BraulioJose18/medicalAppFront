@@ -40,13 +40,11 @@ class Patients extends Component<any, IPatientsState> {
             patients: []
         }
     }
-
     deletePatient(id: any) {
         PatientApiService.instance().delete(id).then(() => {
             this.componentDidMount()
         })
     }
-
     componentDidMount() {
         PatientApiService.instance().list().then((response) => {
             if (response)

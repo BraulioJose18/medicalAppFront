@@ -19,9 +19,8 @@ import {
     IonHeader,
     IonTitle,
     IonToolbar,
-    IonButton,
     IonList,
-    IonItem, IonAvatar, IonLabel, IonIcon, IonGrid, IonRow, IonCol, IonFab, IonFabButton
+    IonItem, IonAvatar, IonLabel, IonIcon, IonFab, IonFabButton
 } from '@ionic/react';
 
 import '@ionic/react/css/core.css';

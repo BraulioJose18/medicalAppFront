@@ -18,3 +18,6 @@ export class PatientApiService extends CrudApiService<number, Patient> {
     }
 
 }
+
+
+
