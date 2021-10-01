@@ -58,7 +58,7 @@ class EditPatient extends Component<any, IPatientState> {
             <IonApp>
                 <IonHeader>
                     <IonToolbar color="primary">
-                        <IonTitle>Crear Paciente</IonTitle>
+                        <IonTitle>Editar Paciente</IonTitle>
                     </IonToolbar>
                 </IonHeader>
                 <IonContent>

@@ -25,6 +25,8 @@ import Patients from "./pages/Patient/Patients";
 import DetailPatient from "./pages/Patient/DetailPatient";
 import CreatePatient from "./pages/Patient/CreatePatient";
 import EditPatient from "./pages/Patient/EditPatient";
+import HistoryPatient from "./pages/Patient/HistoryPatient";
+import CreateCheck from "./pages/Patient/CreateCheck";
 
 const App: React.FC = () => {
     return (
@@ -32,6 +34,12 @@ const App: React.FC = () => {
             <IonReactRouter>
                 <IonRouterOutlet>
                     <Route path="/pacientes" component={Patients}/>
+                    <Route exact path="/pacientes/historial/:id" render={(props) => (
+                        <HistoryPatient id={Number(props.match.params.id)}/>
+                    )}/>
+                    <Route exact path="/pacientes/historial/:id/crear" render={(props) => (
+                        <CreateCheck id={Number(props.match.params.id)}/>
+                    )}/>
                     <Route exact path="/pacientes/:id" render={(props) => (
                         <DetailPatient id={Number(props.match.params.id)}/>
                     )}/>

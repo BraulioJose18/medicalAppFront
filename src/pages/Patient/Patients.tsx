@@ -9,7 +9,8 @@ import {
     trash,
     eye,
     add,
-    pencil
+    pencil,
+    reader
 } from "ionicons/icons";
 import '../Page.css'
 import {
@@ -113,7 +114,15 @@ class Patients extends Component<any, IPatientsState> {
                                                     >
                                                         <IonIcon slot="icon-only" src={pencil}/></IonButton>
                                                 </IonCol>
-
+                                                <IonCol>
+                                                    <IonButton
+                                                        color="warning"
+                                                        expand="block"
+                                                        shape="round"
+                                                        href={"pacientes/historial/" + item.id}
+                                                    >
+                                                        <IonIcon slot="icon-only" src={reader}/></IonButton>
+                                                </IonCol>
                                             </IonRow>
                                         </IonGrid>
                                     </IonLabel>
